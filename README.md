@@ -15,6 +15,30 @@ Options:
   -V, --version                  Print version
 ```
 
+```console
+This is the colors.txt file. It should contain only color codes. All 16 color codes should be set.
+One color code per line, colors are read from top to bottom (color0-15).
+It is possible to separate colors by using a line break.
+
+#1c1e26
+#876170
+#618762
+#6d5f69
+#414658
+#6c6f93
+#618780
+#b5b7bd
+        <-- a line break to separate normal colors from bright colors
+#1c1e26
+#876170
+#618762
+#6d5f69
+#414658
+#6c6f93
+#618780
+#b5b7bd
+```
+
 #### Example: generated Alacritty colors
 ```toml
 [colors.primary]
