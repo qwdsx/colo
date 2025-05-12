@@ -14,7 +14,6 @@ impl Config {
         suffix: Option<String>
     ) -> Result<Self, anyhow::Error> {
         let current_dir = std::env::current_dir()?;
-        dbg!(&current_dir);
 
         let output_folder = match output_folder {
             Some(s) => s,
