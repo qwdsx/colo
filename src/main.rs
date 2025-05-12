@@ -1,16 +1,12 @@
-use std::fs::{self};
-
 
 mod template;
+use template::TemplateType;
+
 mod cli;
 mod config;
 
 use config::Config;
 
-enum TemplateType {
-    Alacritty,
-    Xresources
-}
 
 fn main() -> anyhow::Result<()> {
     let cli = cli::Cli::new();
@@ -18,6 +14,7 @@ fn main() -> anyhow::Result<()> {
 
     write_color_config(&config, TemplateType::Alacritty);
     write_color_config(&config, TemplateType::Xresources);
+    write_color_config(&config, TemplateType::Polybar);
 
     Ok(())
 }
@@ -30,6 +27,10 @@ fn write_color_config(config: &Config, template_type: TemplateType) {
         },
         TemplateType::Xresources => {
             let template = template::template_xresources(&config.colors);
+            template.write(&config);
+        },
+        TemplateType::Polybar => {
+            let template = template::template_polybar(&config.colors);
             template.write(&config);
         }
     }

@@ -13,11 +13,18 @@ const COLOR_NAMES: [&str; 8] = [
     "white"
 ];
 
+pub enum TemplateType {
+    Alacritty,
+    Xresources,
+    Polybar
+}
+
 pub struct Template {
     pub name: String,
     pub file_ext: String,
     pub template: String
 }
+
 
 impl Template {
     pub fn write(self: &Self, config: &Config) {
@@ -75,6 +82,24 @@ pub fn template_xresources(colors: &Vec<String>) -> Template {
     Template {
         name: "xresources".into(),
         file_ext: "".into(),
+        template: template_vec.join("\n")
+    }
+}
+
+pub fn template_polybar(colors: &Vec<String>) -> Template {
+    let mut template_vec = Vec::<String>::new();
+
+    template_vec.push("[colors]".into());
+    template_vec.push(format!("background = \"{}\"", colors[0]));
+    template_vec.push(format!("foreground = \"{}\"", colors[7]));
+
+    for n in 0..16 {
+        template_vec.push(format!("color{} = \"{}\"", n, colors[n]));
+    }
+
+    Template {
+        name: "polybar".into(),
+        file_ext: "ini".into(),
         template: template_vec.join("\n")
     }
 }

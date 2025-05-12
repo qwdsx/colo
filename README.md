@@ -1,13 +1,17 @@
 ## A CLI tool to generate colors for dotfiles
 Can be used to generate colors for multiple config files from a single color palette file.
-<br>Currently only supports Xresources and Alacritty.
+<br>Background and foreground colors are taken from color0 and color7 respectively.
+<br>Currently supports Xresources, Alacritty and Polybar.
+
+TODO:
+<br>[ ] Choose which configs to generate
 
 ```console
 Usage: colo [OPTIONS]
 
 Options:
       --outputpath <OUTPUTPATH>  Output folder for generated files.
-                                 If not set, generates a folder called 'output' in the current directory
+                                 If not set, generates a folder called 'colo_output' in the current directory
       --colorpath <COLORPATH>    Path to a file containing color codes.
                                  If not set, assumes the file is in the current directory and is called 'colors.txt'
       --suffix <SUFFIX>           A string to be added to the end of filename. Default is no suffix

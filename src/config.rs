@@ -18,7 +18,7 @@ impl Config {
 
         let output_folder = match output_folder {
             Some(s) => s,
-            None => current_dir.join("output")
+            None => current_dir.join("colo_output")
         };
 
         if !output_folder.exists() {
