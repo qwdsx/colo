@@ -104,6 +104,20 @@ pub fn template_polybar(colors: &Vec<String>) -> Template {
     }
 }
 
+pub fn get_template_from_type(colors: &Vec<String>, template_type: TemplateType) -> Template {
+    match template_type {
+        TemplateType::Alacritty => {
+            template_alacritty(&colors)
+        },
+        TemplateType::Xresources => {
+            template_xresources(&colors)
+        },
+        TemplateType::Polybar => {
+            template_polybar(&colors)
+        }
+    }
+}
+
 fn file_ext(file_ext: &str) -> String {
     if file_ext == "" {
         file_ext.into()

@@ -15,14 +15,6 @@ impl Config {
     ) -> Result<Self, anyhow::Error> {
         let current_dir = std::env::current_dir()?;
 
-        let output_folder = match output_folder {
-            Some(s) => s,
-            None => current_dir.join("colo_output")
-        };
-
-        if !output_folder.exists() {
-            create_dir_all(&output_folder)?
-        }
 
         let colorpath = match colorpath {
             Some(s) => s,
@@ -40,6 +32,15 @@ impl Config {
             Some(s) => s,
             None => "".into()
         };
+
+        let output_folder = match output_folder {
+            Some(s) => s,
+            None => current_dir.join("colo_output")
+        };
+
+        if !output_folder.exists() {
+            create_dir_all(&output_folder)?
+        }
 
         Ok(
             Self {

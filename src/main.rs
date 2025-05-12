@@ -1,11 +1,11 @@
 
+mod cli;
+mod error;
+mod config;
+use config::Config;
+
 mod template;
 use template::TemplateType;
-
-mod cli;
-mod config;
-
-use config::Config;
 
 
 fn main() -> anyhow::Result<()> {
@@ -20,18 +20,6 @@ fn main() -> anyhow::Result<()> {
 }
 
 fn write_color_config(config: &Config, template_type: TemplateType) {
-    match template_type {
-        TemplateType::Alacritty => {
-            let template = template::template_alacritty(&config.colors);
-            template.write(&config);
-        },
-        TemplateType::Xresources => {
-            let template = template::template_xresources(&config.colors);
-            template.write(&config);
-        },
-        TemplateType::Polybar => {
-            let template = template::template_polybar(&config.colors);
-            template.write(&config);
-        }
-    }
+    let template = template::get_template_from_type(&config.colors, template_type);
+    template.write(&config);
 }
